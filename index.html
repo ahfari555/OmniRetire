@@ -1,56 +1,78 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en" class="light scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- SEO Meta Tags for US Audience -->
   <title>OmniRetire - 2026 US Retirement, 401k, IRA & Social Security Estimator Suite</title>
   <meta name="description" content="100% free US retirement calculator suite. Estimate 401k growth, Roth IRA compounding, FIRE early retirement numbers, pension payouts, and Social Security benefits instantly.">
-  <meta name="keywords" content="us retirement calculator, 401k savings estimator, roth ira compound calculator, fire retirement calculator, social security benefit estimator">
-  <meta name="author" content="OmniRetire">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-  
-  <!-- Canonical Tag -->
+  <meta name="keywords" content="us retirement calculator, 401k savings estimator, roth ira compound calculator, fire retirement calculator, social security benefit estimator, rmd calculator, hsa wealth">
+  <meta name="author" content="OmniRetire Enterprise">
   <link rel="canonical" href="https://omni-retire.vercel.app/">
+  <meta name="google-site-verification" content="google45274bc7d9133ca5" />
 
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="OmniRetire - 2026 US Retirement Calculator Suite & Knowledge Base">
-  <meta property="og:description" content="Access 10 advanced retirement calculation tools and 10+ expert guides for US workers.">
+  <meta property="og:title" content="OmniRetire - 2026 US Retirement Calculator Suite">
+  <meta property="og:description" content="Access 10 advanced retirement calculation tools with visual charts for US workers.">
   <meta property="og:url" content="https://omni-retire.vercel.app/">
   <meta property="og:type" content="website">
 
-  <!-- Google Search Console Verification Tag -->
-  <meta name="google-site-verification" content="google45274bc7d9133ca5" />
-
-  <!-- Google AdSense Script -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2805918301542012" crossorigin="anonymous"></script>
-
-  <!-- Schema.org JSON-LD -->
+  <!-- Massive JSON-LD Schema for SEO Rich Snippets -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "OmniRetire Ultimate Retirement Calculator Suite",
-    "url": "https://omni-retire.vercel.app/",
-    "description": "Comprehensive suite of 10 US retirement calculators and educational guides.",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "All",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "OmniRetire Suite",
+        "url": "https://omni-retire.vercel.app/",
+        "description": "Comprehensive suite of 10 US retirement calculators.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is a good 401(k) balance by age 40?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Fidelity recommends having 3x your starting salary saved by age 40. For example, if you earn $75,000, your target 401(k) balance should be around $225,000."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the FIRE 4% rule work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The 4% rule suggests you can safely withdraw 4% of your total retirement portfolio in your first year of retirement, adjusting for inflation thereafter, without running out of money for 30 years."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "When should I claim Social Security?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can claim as early as age 62 for a reduced benefit, at full retirement age (67) for 100% of your benefit, or delay until age 70 for up to an 8% annual increase."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 
-  <!-- Favicon SVG -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌴</text></svg>">
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2805918301542012" crossorigin="anonymous"></script>
 
-  <!-- Google Font & Tailwind CSS -->
+  <!-- Chart.js for Data Visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Fonts & Tailwind CSS -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌴</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -58,7 +80,6 @@
       theme: { extend: { fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] } } }
     }
   </script>
-
   <style>
     body { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%); transition: background-color 0.3s ease; }
     html.dark body { background: linear-gradient(135deg, #09090b 0%, #0f172a 50%, #1e1b4b 100%); color: #f8fafc; }
@@ -66,22 +87,31 @@
     html.dark .pastel-card { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5); }
     .gradient-text { background: linear-gradient(135deg, #10b981 0%, #0284c7 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
     html.dark .gradient-text { background: linear-gradient(135deg, #34d399 100%, #38bdf8 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .custom-scrollbar::-webkit-scrollbar { height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(16, 185, 129, 0.5); border-radius: 10px; }
+    @media print {
+      body { background: white; color: black; }
+      header, .no-print, #seo-section, #faq-section, #matrix-section, footer { display: none !important; }
+      #printArea { display: block !important; width: 100%; box-shadow: none; border: none; padding: 0; }
+      .pastel-card { border: 1px solid #ccc; box-shadow: none; }
+    }
   </style>
 </head>
 <body class="font-sans min-h-screen flex flex-col antialiased text-slate-800 dark:text-slate-100">
 
   <!-- TOP NAVBAR -->
-  <header class="sticky top-0 z-50 bg-white/70 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-6 py-4">
+  <header class="sticky top-0 z-50 bg-white/70 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-6 py-4 no-print">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-sky-600 flex items-center justify-center font-black text-xl text-white shadow-md">🌴</div>
         <span class="text-xl font-extrabold tracking-tight text-slate-800 dark:text-white">Omni<span class="gradient-text">Retire</span></span>
       </a>
-      <div class="flex items-center gap-3">
-        <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900">
-          <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span> 10 Pro Calculators & 10+ Guides
+      <div class="flex items-center gap-4">
+        <span class="hidden md:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900">
+          <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span> 10 Pro Calculators Active
         </span>
-        <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+        <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition" aria-label="Toggle Dark Mode">
           <span id="themeIcon">🌙</span>
         </button>
       </div>
@@ -89,627 +119,772 @@
   </header>
 
   <!-- HERO SECTION -->
-  <section class="max-w-7xl mx-auto px-6 pt-10 pb-6 text-center">
-    <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950 px-3 py-1 rounded-full border border-emerald-100 dark:border-emerald-900 mb-3 inline-block">US Retirement Wealth Intelligence Suite</span>
-    <h1 class="text-3xl md:text-5xl font-black tracking-tight text-slate-800 dark:text-white mb-3">
-      Ultimate Retirement & <span class="gradient-text">Wealth Growth Suite.</span>
+  <section class="max-w-7xl mx-auto px-6 pt-12 pb-8 text-center no-print">
+    <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950 px-4 py-1.5 rounded-full border border-emerald-100 dark:border-emerald-900 mb-4 inline-block shadow-sm">US Retirement Wealth Intelligence</span>
+    <h1 class="text-4xl md:text-6xl font-black tracking-tight text-slate-800 dark:text-white mb-4">
+      Ultimate Retirement & <span class="gradient-text">Wealth Visualizer.</span>
     </h1>
-    <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base max-w-2xl mx-auto font-medium">
-      Access 10 specialized financial calculators to project 401(k), IRA, FIRE numbers, pensions, and Social Security benefits with absolute precision.
+    <p class="text-slate-500 dark:text-slate-400 text-sm md:text-lg max-w-3xl mx-auto font-medium leading-relaxed mb-6">
+      Access 10 enterprise-grade financial calculators. Project your 401(k) growth, Roth IRA compounding, FIRE independence numbers, and Social Security payouts with high-fidelity interactive charts.
     </p>
+    <div class="flex flex-wrap justify-center gap-4 text-xs font-bold text-slate-500 dark:text-slate-400">
+      <span class="flex items-center gap-1">🔒 100% Private (No Data Saved)</span>
+      <span class="flex items-center gap-1">📊 Chart.js Powered</span>
+      <span class="flex items-center gap-1">📄 PDF Export Ready</span>
+    </div>
   </section>
 
-  <!-- MAIN CONTAINER -->
-  <main class="max-w-7xl mx-auto px-6 py-6 flex-1 w-full space-y-8">
+  <!-- CALCULATOR APP CONTAINER -->
+  <main class="max-w-7xl mx-auto px-6 py-6 flex-1 w-full space-y-8" id="printArea">
 
-    <!-- TAB NAVIGATION (10 CALCULATORS) -->
-    <div class="flex justify-center mb-4 overflow-x-auto py-2">
-      <div class="bg-slate-200/70 dark:bg-slate-800 p-1.5 rounded-2xl flex gap-2">
-        <button onclick="switchTab('k401')" id="tabBtnK401" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-sm whitespace-nowrap">🌴 401(k) Growth</button>
-        <button onclick="switchTab('ira')" id="tabBtnIra" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 whitespace-nowrap">💰 Roth IRA</button>
-        <button onclick="switchTab('fire')" id="tabBtnFire" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 whitespace-nowrap">🔥 FIRE Number</button>
-        <button onclick="switchTab('social')" id="tabBtnSocial" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 whitespace-nowrap">🛡️ Social Security</button>
-        <button onclick="switchTab('withdrawal')" id="tabBtnWithdrawal" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 whitespace-nowrap">📈 Safe Withdrawal</button>
-        <button onclick="switchTab('pension')" id="tabBtnPension" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 whitespace-nowrap">💼 Pension Estimator</button>
-        <button onclick="switchTab('hsa')" id="tabBtnHsa" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 whitespace-nowrap">🏥 HSA Wealth</button>
-        <button onclick="switchTab('rmd')" id="tabBtnRmd" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 whitespace-nowrap">📋 RMD Calculator</button>
-        <button onclick="switchTab('annuity')" id="tabBtnAnnuity" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 whitespace-nowrap">📑 Annuity Payout</button>
-        <button onclick="switchTab('milestone')" id="tabBtnMilestone" class="px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 whitespace-nowrap">🎯 Savings Milestone</button>
+    <!-- 10 TABS NAVIGATION -->
+    <div class="flex justify-start md:justify-center mb-8 overflow-x-auto py-3 no-print custom-scrollbar">
+      <div class="bg-slate-200/70 dark:bg-slate-800 p-2 rounded-2xl flex gap-2 border border-slate-300/50 dark:border-slate-700/50 shadow-inner">
+        <button onclick="switchTab('k401')" id="tabBtnK401" class="px-5 py-2.5 rounded-xl text-xs font-extrabold transition bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-md whitespace-nowrap">🌴 401(k)</button>
+        <button onclick="switchTab('ira')" id="tabBtnIra" class="px-5 py-2.5 rounded-xl text-xs font-extrabold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 whitespace-nowrap">💰 Roth IRA</button>
+        <button onclick="switchTab('fire')" id="tabBtnFire" class="px-5 py-2.5 rounded-xl text-xs font-extrabold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 whitespace-nowrap">🔥 FIRE</button>
+        <button onclick="switchTab('social')" id="tabBtnSocial" class="px-5 py-2.5 rounded-xl text-xs font-extrabold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 whitespace-nowrap">🛡️ Social Sec</button>
+        <button onclick="switchTab('withdrawal')" id="tabBtnWithdrawal" class="px-5 py-2.5 rounded-xl text-xs font-extrabold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 whitespace-nowrap">📈 Withdraw</button>
+        <button onclick="switchTab('pension')" id="tabBtnPension" class="px-5 py-2.5 rounded-xl text-xs font-extrabold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 whitespace-nowrap">💼 Pension</button>
+        <button onclick="switchTab('hsa')" id="tabBtnHsa" class="px-5 py-2.5 rounded-xl text-xs font-extrabold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 whitespace-nowrap">🏥 HSA</button>
+        <button onclick="switchTab('rmd')" id="tabBtnRmd" class="px-5 py-2.5 rounded-xl text-xs font-extrabold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 whitespace-nowrap">📋 RMD</button>
+        <button onclick="switchTab('annuity')" id="tabBtnAnnuity" class="px-5 py-2.5 rounded-xl text-xs font-extrabold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 whitespace-nowrap">📑 Annuity</button>
+        <button onclick="switchTab('milestone')" id="tabBtnMilestone" class="px-5 py-2.5 rounded-xl text-xs font-extrabold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 whitespace-nowrap">🎯 Milestone</button>
       </div>
     </div>
 
-    <!-- TAB 1: 401(K) GROWTH -->
-    <div id="tabContentK401" class="pastel-card p-6 md:p-8 rounded-3xl space-y-6">
-      <div>
-        <h2 class="text-lg font-black text-slate-800 dark:text-white mb-1">🌴 US 401(k) Retirement Account Growth Estimator</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Project your future 401(k) balance based on annual contributions, employer matching, and compound returns.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Current Balance ($):</label>
-          <input type="number" id="k401Balance" value="50000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
+    <!-- 2-COLUMN GRID -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+      
+      <!-- LEFT COLUMN: FORMS -->
+      <div class="lg:col-span-5 space-y-6 no-print">
+        
+        <!-- 1. 401k -->
+        <div id="tabContentK401" class="pastel-card p-6 md:p-8 rounded-3xl space-y-5">
+          <div class="border-b border-slate-200 dark:border-slate-700 pb-3">
+            <h2 class="text-xl font-black text-slate-800 dark:text-white">US 401(k) Growth Estimator</h2>
+            <p class="text-[11px] text-slate-500 mt-1">Include employer match in your annual contribution.</p>
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Current Balance ($):</label>
+            <input type="number" id="k401Balance" value="50000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Annual Contribution ($):</label>
+            <input type="number" id="k401Contrib" value="12000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Years:</label>
+              <input type="number" id="k401Years" value="25" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            </div>
+            <div>
+              <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Return (%):</label>
+              <input type="number" step="0.1" id="k401Return" value="7.5" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            </div>
+          </div>
+          <button onclick="calculate401k()" class="w-full mt-2 bg-gradient-to-r from-emerald-600 to-sky-600 hover:from-emerald-700 hover:to-sky-700 text-white font-extrabold py-4 rounded-xl text-sm transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+            Visualize 401(k) Growth 📊
+          </button>
         </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Annual Contribution ($):</label>
-          <input type="number" id="k401Contrib" value="12000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
+
+        <!-- 2. IRA -->
+        <div id="tabContentIra" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-5">
+          <div class="border-b border-slate-200 dark:border-slate-700 pb-3">
+            <h2 class="text-xl font-black text-slate-800 dark:text-white">Roth IRA Tax-Free Growth</h2>
+            <p class="text-[11px] text-slate-500 mt-1">Max 2026 contribution is $7,000 (under 50).</p>
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Annual Contribution ($):</label>
+            <input type="number" id="iraContrib" value="7000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Years:</label>
+              <input type="number" id="iraYears" value="30" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            </div>
+            <div>
+              <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Return (%):</label>
+              <input type="number" step="0.1" id="iraReturn" value="8.0" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            </div>
+          </div>
+          <button onclick="calculateIra()" class="w-full mt-2 bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 text-white font-extrabold py-4 rounded-xl text-sm transition shadow-lg transform hover:-translate-y-0.5">
+            Visualize Roth IRA 💰
+          </button>
         </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Years to Retirement:</label>
-          <input type="number" id="k401Years" value="25" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
+
+        <!-- 3. FIRE -->
+        <div id="tabContentFire" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-5">
+          <div class="border-b border-slate-200 dark:border-slate-700 pb-3">
+            <h2 class="text-xl font-black text-slate-800 dark:text-white">FIRE Target Estimator</h2>
+            <p class="text-[11px] text-slate-500 mt-1">Determine your Financial Independence number.</p>
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Desired Annual Expenses ($):</label>
+            <input type="number" id="fireExpenses" value="60000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Safe Withdrawal Rate (%):</label>
+            <input type="number" step="0.1" id="fireRate" value="4.0" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <button onclick="calculateFire()" class="w-full mt-2 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-extrabold py-4 rounded-xl text-sm transition shadow-lg transform hover:-translate-y-0.5">
+            Calculate FIRE Number 🔥
+          </button>
         </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Expected Annual Return (%):</label>
-          <input type="number" step="0.1" id="k401Return" value="7.5" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
+
+        <!-- 4. SOCIAL SECURITY -->
+        <div id="tabContentSocial" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-5">
+          <div class="border-b border-slate-200 dark:border-slate-700 pb-3">
+            <h2 class="text-xl font-black text-slate-800 dark:text-white">Social Security Estimator</h2>
+            <p class="text-[11px] text-slate-500 mt-1">Based on career average earnings.</p>
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Average Career Earnings ($):</label>
+            <input type="number" id="ssEarnings" value="75000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Claiming Age Strategy:</label>
+            <select id="ssAge" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+              <option value="early">Age 62 (Early Claiming)</option>
+              <option value="full" selected>Age 67 (Full Retirement)</option>
+              <option value="delayed">Age 70 (Delayed Maximum)</option>
+            </select>
+          </div>
+          <button onclick="calculateSocial()" class="w-full mt-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-extrabold py-4 rounded-xl text-sm transition shadow-lg transform hover:-translate-y-0.5">
+            Compare Claiming Ages 🛡️
+          </button>
+        </div>
+
+        <!-- 5. SAFE WITHDRAWAL -->
+        <div id="tabContentWithdrawal" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-5">
+          <div class="border-b border-slate-200 dark:border-slate-700 pb-3">
+            <h2 class="text-xl font-black text-slate-800 dark:text-white">Safe Withdrawal Rate</h2>
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Portfolio Balance ($):</label>
+            <input type="number" id="wdBalance" value="1200000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Withdrawal Rate (%):</label>
+            <input type="number" step="0.1" id="wdRate" value="4.0" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <button onclick="calculateWithdrawal()" class="w-full mt-2 bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700 text-white font-extrabold py-4 rounded-xl text-sm transition shadow-lg transform hover:-translate-y-0.5">
+            Visualize Income 📈
+          </button>
+        </div>
+
+        <!-- 6. PENSION -->
+        <div id="tabContentPension" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-5">
+          <div class="border-b border-slate-200 dark:border-slate-700 pb-3">
+            <h2 class="text-xl font-black text-slate-800 dark:text-white">Pension Estimator</h2>
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Final Average Salary ($):</label>
+            <input type="number" id="penSalary" value="95000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Years of Service:</label>
+              <input type="number" id="penYears" value="25" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            </div>
+            <div>
+              <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Multiplier (%):</label>
+              <input type="number" step="0.1" id="penMultiplier" value="2.0" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            </div>
+          </div>
+          <button onclick="calculatePension()" class="w-full mt-2 bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-extrabold py-4 rounded-xl text-sm transition shadow-lg transform hover:-translate-y-0.5">
+            Visualize Pension 💼
+          </button>
+        </div>
+
+        <!-- 7. HSA -->
+        <div id="tabContentHsa" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-5">
+          <div class="border-b border-slate-200 dark:border-slate-700 pb-3">
+            <h2 class="text-xl font-black text-slate-800 dark:text-white">HSA Wealth Estimator</h2>
+            <p class="text-[11px] text-slate-500 mt-1">Triple tax-advantaged growth.</p>
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Annual HSA Contribution ($):</label>
+            <input type="number" id="hsaContrib" value="4150" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Years:</label>
+              <input type="number" id="hsaYears" value="20" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            </div>
+            <div>
+              <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Return (%):</label>
+              <input type="number" step="0.1" id="hsaReturn" value="7.0" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            </div>
+          </div>
+          <button onclick="calculateHsa()" class="w-full mt-2 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-extrabold py-4 rounded-xl text-sm transition shadow-lg transform hover:-translate-y-0.5">
+            Visualize HSA Growth 🏥
+          </button>
+        </div>
+
+        <!-- 8. RMD -->
+        <div id="tabContentRmd" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-5">
+          <div class="border-b border-slate-200 dark:border-slate-700 pb-3">
+            <h2 class="text-xl font-black text-slate-800 dark:text-white">RMD Calculator (Age 73+)</h2>
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Pre-Tax Account Balance ($):</label>
+            <input type="number" id="rmdBalance" value="500000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Your Age:</label>
+            <input type="number" id="rmdAge" value="75" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <button onclick="calculateRmd()" class="w-full mt-2 bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white font-extrabold py-4 rounded-xl text-sm transition shadow-lg transform hover:-translate-y-0.5">
+            Calculate Required Min Distribution 📋
+          </button>
+        </div>
+
+        <!-- 9. ANNUITY -->
+        <div id="tabContentAnnuity" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-5">
+          <div class="border-b border-slate-200 dark:border-slate-700 pb-3">
+            <h2 class="text-xl font-black text-slate-800 dark:text-white">Annuity Payout Estimator</h2>
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Lump Sum Premium ($):</label>
+            <input type="number" id="annBalance" value="300000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Payout Years:</label>
+              <input type="number" id="annYears" value="20" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            </div>
+            <div>
+              <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Interest (%):</label>
+              <input type="number" step="0.1" id="annRate" value="5.0" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+            </div>
+          </div>
+          <button onclick="calculateAnnuity()" class="w-full mt-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-extrabold py-4 rounded-xl text-sm transition shadow-lg transform hover:-translate-y-0.5">
+            Visualize Annuity Income 📑
+          </button>
+        </div>
+
+        <!-- 10. MILESTONE -->
+        <div id="tabContentMilestone" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-5">
+          <div class="border-b border-slate-200 dark:border-slate-700 pb-3">
+            <h2 class="text-xl font-black text-slate-800 dark:text-white">Savings Milestone Tracker</h2>
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Current Balance ($):</label>
+            <input type="number" id="mileBalance" value="100000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Target Goal ($):</label>
+            <input type="number" id="mileTarget" value="1500000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">Annual Savings ($):</label>
+            <input type="number" id="mileSavings" value="25000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
+          </div>
+          <button onclick="calculateMilestone()" class="w-full mt-2 bg-gradient-to-r from-blue-500 to-sky-600 hover:from-blue-600 hover:to-sky-700 text-white font-extrabold py-4 rounded-xl text-sm transition shadow-lg transform hover:-translate-y-0.5">
+            Visualize Timeline to Goal 🎯
+          </button>
         </div>
       </div>
-      <div>
-        <button onclick="calculate401k()" class="bg-gradient-to-r from-emerald-600 to-sky-600 hover:from-emerald-700 hover:to-sky-700 text-white font-bold py-3 px-6 rounded-xl text-xs transition shadow-md">
-          Calculate 401(k) Projection 📊
-        </button>
+
+      <!-- RIGHT COLUMN: VISUALIZATION CHART -->
+      <div class="lg:col-span-7">
+        <div id="resultCard" class="pastel-card p-8 md:p-10 rounded-3xl flex flex-col justify-center items-center h-full min-h-[500px]">
+          <div class="text-center space-y-3 mb-8 w-full border-b border-slate-200 dark:border-slate-700 pb-6">
+            <div id="resultLabel" class="text-sm uppercase tracking-widest font-extrabold text-slate-400 dark:text-slate-500">System Standby</div>
+            <div id="resultTotal" class="text-5xl md:text-6xl font-black text-slate-800 dark:text-white drop-shadow-sm">Awaiting Input</div>
+            <p id="resultSubtext" class="text-xs text-slate-500 dark:text-slate-400 mt-2">Enter your financial variables on the left panel to generate a high-fidelity visual projection.</p>
+            <button onclick="window.print()" class="no-print mt-6 inline-flex items-center gap-2 text-xs font-bold text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 px-6 py-2.5 rounded-full hover:bg-slate-50 dark:hover:bg-slate-700 transition shadow-sm">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+              Save Report as PDF
+            </button>
+          </div>
+          
+          <!-- CHART CANVAS -->
+          <div class="w-full flex-1 relative min-h-[300px]">
+            <canvas id="wealthChart"></canvas>
+          </div>
+        </div>
       </div>
-      <div id="k401Result" class="hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-center space-y-2">
-        <div class="text-[10px] uppercase font-bold text-slate-400">Estimated Future 401(k) Balance</div>
-        <div id="resK401Total" class="text-3xl font-black text-emerald-600 dark:text-emerald-400">$0</div>
-      </div>
+
     </div>
-
-    <!-- TAB 2: ROTH IRA -->
-    <div id="tabContentIra" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-6">
-      <div>
-        <h2 class="text-lg font-black text-slate-800 dark:text-white mb-1">💰 Roth IRA Tax-Free Growth Estimator</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Calculate tax-free compound growth on your Roth IRA contributions over time.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Annual Contribution ($):</label>
-          <input type="number" id="iraContrib" value="7000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Years Compounding:</label>
-          <input type="number" id="iraYears" value="30" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Annual Return (%):</label>
-          <input type="number" step="0.1" id="iraReturn" value="8.0" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-      </div>
-      <div>
-        <button onclick="calculateIra()" class="bg-gradient-to-r from-emerald-600 to-sky-600 hover:from-emerald-700 hover:to-sky-700 text-white font-bold py-3 px-6 rounded-xl text-xs transition shadow-md">
-          Calculate Roth IRA Growth 💰
-        </button>
-      </div>
-      <div id="iraResult" class="hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-center space-y-2">
-        <div class="text-[10px] uppercase font-bold text-slate-400">Estimated Tax-Free Nest Egg</div>
-        <div id="resIraTotal" class="text-3xl font-black text-sky-600 dark:text-sky-400">$0</div>
-      </div>
-    </div>
-
-    <!-- TAB 3: FIRE NUMBER -->
-    <div id="tabContentFire" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-6">
-      <div>
-        <h2 class="text-lg font-black text-slate-800 dark:text-white mb-1">🔥 FIRE (Financial Independence, Retire Early) Number Estimator</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Calculate your target retirement corpus using the classic 4% safe withdrawal rule.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Desired Annual Retirement Expenses ($):</label>
-          <input type="number" id="fireExpenses" value="60000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Safe Withdrawal Rate (%):</label>
-          <input type="number" step="0.1" id="fireRate" value="4.0" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-      </div>
-      <div>
-        <button onclick="calculateFire()" class="bg-gradient-to-r from-emerald-600 to-sky-600 hover:from-emerald-700 hover:to-sky-700 text-white font-bold py-3 px-6 rounded-xl text-xs transition shadow-md">
-          Calculate FIRE Target 🔥
-        </button>
-      </div>
-      <div id="fireResult" class="hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-center space-y-2">
-        <div class="text-[10px] uppercase font-bold text-slate-400">Your Required FIRE Target Corpus</div>
-        <div id="resFireTotal" class="text-3xl font-black text-emerald-600 dark:text-emerald-400">$0</div>
-      </div>
-    </div>
-
-    <!-- TAB 4: SOCIAL SECURITY -->
-    <div id="tabContentSocial" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-6">
-      <div>
-        <h2 class="text-lg font-black text-slate-800 dark:text-white mb-1">🛡️ US Social Security Benefits Estimator</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Estimate monthly Social Security retirement benefits based on career average earnings.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Average Annual Career Earnings ($):</label>
-          <input type="number" id="ssEarnings" value="75000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Retirement Age Claiming Strategy:</label>
-          <select id="ssAge" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-            <option value="early">Early Claiming (Age 62 - Reduced Benefit)</option>
-            <option value="full" selected>Full Retirement Age (Age 67 - Standard)</option>
-            <option value="delayed">Delayed Claiming (Age 70 - Maximum Benefit)</option>
-          </select>
-        </div>
-      </div>
-      <div>
-        <button onclick="calculateSocial()" class="bg-gradient-to-r from-emerald-600 to-sky-600 hover:from-emerald-700 hover:to-sky-700 text-white font-bold py-3 px-6 rounded-xl text-xs transition shadow-md">
-          Calculate Monthly Social Security 🛡️
-        </button>
-      </div>
-      <div id="socialResult" class="hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-center space-y-2">
-        <div class="text-[10px] uppercase font-bold text-slate-400">Estimated Monthly Benefit</div>
-        <div id="resSocialMonthly" class="text-3xl font-black text-sky-600 dark:text-sky-400">$0</div>
-      </div>
-    </div>
-
-    <!-- TAB 5: SAFE WITHDRAWAL -->
-    <div id="tabContentWithdrawal" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-6">
-      <div>
-        <h2 class="text-lg font-black text-slate-800 dark:text-white mb-1">📈 Safe Retirement Withdrawal Rate Calculator</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Determine annual and monthly sustainable income from your accumulated retirement portfolio.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Total Retirement Portfolio Balance ($):</label>
-          <input type="number" id="wdBalance" value="1200000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Withdrawal Rate (%):</label>
-          <input type="number" step="0.1" id="wdRate" value="4.0" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-      </div>
-      <div>
-        <button onclick="calculateWithdrawal()" class="bg-gradient-to-r from-emerald-600 to-sky-600 hover:from-emerald-700 hover:to-sky-700 text-white font-bold py-3 px-6 rounded-xl text-xs transition shadow-md">
-          Calculate Safe Income 📈
-        </button>
-      </div>
-      <div id="withdrawalResult" class="hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-center space-y-2">
-        <div class="text-[10px] uppercase font-bold text-slate-400">Annual Sustainable Income</div>
-        <div id="resWdAnnual" class="text-3xl font-black text-emerald-600 dark:text-emerald-400">$0</div>
-        <div class="text-xs text-slate-500">Monthly Income: <span id="resWdMonthly" class="font-bold text-slate-700 dark:text-slate-300">$0</span></div>
-      </div>
-    </div>
-
-    <!-- TAB 6: PENSION ESTIMATOR -->
-    <div id="tabContentPension" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-6">
-      <div>
-        <h2 class="text-lg font-black text-slate-800 dark:text-white mb-1">💼 Defined Benefit Pension Estimator</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Estimate traditional employer pension payouts based on final salary and years of service.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Final Average Salary ($):</label>
-          <input type="number" id="penSalary" value="95000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Years of Service:</label>
-          <input type="number" id="penYears" value="25" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Multiplier Rate (% per year):</label>
-          <input type="number" step="0.1" id="penMultiplier" value="2.0" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-      </div>
-      <div>
-        <button onclick="calculatePension()" class="bg-gradient-to-r from-emerald-600 to-sky-600 hover:from-emerald-700 hover:to-sky-700 text-white font-bold py-3 px-6 rounded-xl text-xs transition shadow-md">
-          Calculate Annual Pension 💼
-        </button>
-      </div>
-      <div id="pensionResult" class="hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-center space-y-2">
-        <div class="text-[10px] uppercase font-bold text-slate-400">Estimated Annual Pension Payout</div>
-        <div id="resPenTotal" class="text-3xl font-black text-sky-600 dark:text-sky-400">$0</div>
-      </div>
-    </div>
-
-    <!-- TAB 7: HSA WEALTH ACCUMULATION -->
-    <div id="tabContentHsa" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-6">
-      <div>
-        <h2 class="text-lg font-black text-slate-800 dark:text-white mb-1">🏥 Health Savings Account (HSA) Stealth Wealth Estimator</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Calculate triple tax-free compound growth on your HSA contributions for medical and retirement expenses.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Annual HSA Contribution ($):</label>
-          <input type="number" id="hsaContrib" value="4150" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Years Compounding:</label>
-          <input type="number" id="hsaYears" value="20" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Annual Return (%):</label>
-          <input type="number" step="0.1" id="hsaReturn" value="7.0" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-      </div>
-      <div>
-        <button onclick="calculateHsa()" class="bg-gradient-to-r from-emerald-600 to-sky-600 hover:from-emerald-700 hover:to-sky-700 text-white font-bold py-3 px-6 rounded-xl text-xs transition shadow-md">
-          Calculate HSA Growth 🏥
-        </button>
-      </div>
-      <div id="hsaResult" class="hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-center space-y-2">
-        <div class="text-[10px] uppercase font-bold text-slate-400">Estimated Triple Tax-Free HSA Balance</div>
-        <div id="resHsaTotal" class="text-3xl font-black text-emerald-600 dark:text-emerald-400">$0</div>
-      </div>
-    </div>
-
-    <!-- TAB 8: RMD CALCULATOR -->
-    <div id="tabContentRmd" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-6">
-      <div>
-        <h2 class="text-lg font-black text-slate-800 dark:text-white mb-1">📋 Required Minimum Distribution (RMD) Estimator</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Estimate mandatory annual withdrawals from traditional pre-tax retirement accounts based on IRS life expectancy factors.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Traditional Account Balance ($):</label>
-          <input type="number" id="rmdBalance" value="500000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Your Age (73+):</label>
-          <input type="number" id="rmdAge" value="75" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-      </div>
-      <div>
-        <button onclick="calculateRmd()" class="bg-gradient-to-r from-emerald-600 to-sky-600 hover:from-emerald-700 hover:to-sky-700 text-white font-bold py-3 px-6 rounded-xl text-xs transition shadow-md">
-          Calculate Annual RMD 📋
-        </button>
-      </div>
-      <div id="rmdResult" class="hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-center space-y-2">
-        <div class="text-[10px] uppercase font-bold text-slate-400">Required Minimum Distribution for Current Year</div>
-        <div id="resRmdTotal" class="text-3xl font-black text-sky-600 dark:text-sky-400">$0</div>
-      </div>
-    </div>
-
-    <!-- TAB 9: ANNUITY PAYOUT -->
-    <div id="tabContentAnnuity" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-6">
-      <div>
-        <h2 class="text-lg font-black text-slate-800 dark:text-white mb-1">📑 Retirement Annuity Payout Estimator</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Estimate guaranteed lifetime monthly income converted from a lump-sum retirement nest egg.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Lump Sum Premium ($):</label>
-          <input type="number" id="annBalance" value="300000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Payout Duration (Years):</label>
-          <input type="number" id="annYears" value="20" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Interest Rate (%):</label>
-          <input type="number" step="0.1" id="annRate" value="5.0" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-      </div>
-      <div>
-        <button onclick="calculateAnnuity()" class="bg-gradient-to-r from-emerald-600 to-sky-600 hover:from-emerald-700 hover:to-sky-700 text-white font-bold py-3 px-6 rounded-xl text-xs transition shadow-md">
-          Calculate Annuity Payout 📑
-        </button>
-      </div>
-      <div id="annuityResult" class="hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-center space-y-2">
-        <div class="text-[10px] uppercase font-bold text-slate-400">Estimated Monthly Annuity Income</div>
-        <div id="resAnnMonthly" class="text-3xl font-black text-emerald-600 dark:text-emerald-400">$0</div>
-      </div>
-    </div>
-
-    <!-- TAB 10: SAVINGS MILESTONE -->
-    <div id="tabContentMilestone" class="hidden pastel-card p-6 md:p-8 rounded-3xl space-y-6">
-      <div>
-        <h2 class="text-lg font-black text-slate-800 dark:text-white mb-1">🎯 Retirement Savings Milestone & Timeline Calculator</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400">Discover exactly how many years it will take to reach your specific wealth accumulation milestone.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Current Balance ($):</label>
-          <input type="number" id="mileBalance" value="100000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Target Wealth Goal ($):</label>
-          <input type="number" id="mileTarget" value="1500000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-        <div>
-          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Annual Savings ($):</label>
-          <input type="number" id="mileSavings" value="25000" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs font-medium focus:outline-none">
-        </div>
-      </div>
-      <div>
-        <button onclick="calculateMilestone()" class="bg-gradient-to-r from-emerald-600 to-sky-600 hover:from-emerald-700 hover:to-sky-700 text-white font-bold py-3 px-6 rounded-xl text-xs transition shadow-md">
-          Calculate Timeline to Goal 🎯
-        </button>
-      </div>
-      <div id="milestoneResult" class="hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-center space-y-2">
-        <div class="text-[10px] uppercase font-bold text-slate-400">Estimated Years to Reach Milestone</div>
-        <div id="resMileYears" class="text-3xl font-black text-sky-600 dark:text-sky-400">0 Years</div>
-      </div>
-    </div>
-
-    <!-- 10+ COMPREHENSIVE EXPERT ARTICLES (1,500+ WORDS SEO KNOWLEDGE BASE) -->
-    <section class="pastel-card p-8 md:p-12 rounded-3xl space-y-8">
-      <div class="border-b border-slate-200 dark:border-slate-700 pb-4">
-        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950 px-3 py-1 rounded-full border border-emerald-100 dark:border-emerald-900 mb-2 inline-block">Authoritative Knowledge Base</span>
-        <h2 class="text-2xl md:text-3xl font-black text-slate-800 dark:text-white">10 Essential Expert Guides on US Retirement Planning & Wealth Accumulation</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Explore our complete repository of in-depth articles designed to educate US workers and optimize retirement readiness.</p>
-      </div>
-
-      <article class="space-y-3">
-        <h3 class="text-lg font-extrabold text-slate-800 dark:text-white">1. Mastering 401(k) Contribution Limits and Employer Matching Strategies</h3>
-        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-          Employer-sponsored 401(k) plans remain the cornerstone of retirement planning in the United States. Maximizing annual pre-tax or Roth contributions while capturing the full employer match is equivalent to securing an immediate guaranteed return on investment. Understanding IRS contribution ceilings, catch-up contributions for workers aged 50 and older, and vesting schedules empowers employees to accelerate wealth accumulation significantly throughout their careers.
-        </p>
-      </article>
-
-      <article class="space-y-3">
-        <h3 class="text-lg font-extrabold text-slate-800 dark:text-white">2. Roth IRA vs. Traditional IRA: Tax Diversification for Long-Term Security</h3>
-        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-          Individual Retirement Accounts (IRAs) offer vital tax advantages depending on whether you choose Traditional or Roth structures. Traditional IRAs provide upfront tax deductions on contributions but require ordinary income tax payments upon withdrawal during retirement. Conversely, Roth IRAs utilize after-tax dollars, allowing contributions and investment earnings to compound and withdraw entirely tax-free. Establishing tax diversification mitigates legislative and tax bracket risks in retirement.
-        </p>
-      </article>
-
-      <article class="space-y-3">
-        <h3 class="text-lg font-extrabold text-slate-800 dark:text-white">3. The FIRE Movement: Achieving Financial Independence and Early Retirement</h3>
-        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-          The Financial Independence, Retire Early (FIRE) movement has transformed modern personal finance by championing aggressive savings rates—often between 50% and 70% of annual income. Adherents calculate their target retirement corpus by multiplying annual expenses by 25 (based on the 4% safe withdrawal rule). Achieving FIRE requires strict budget optimization, strategic asset allocation, and disciplined long-term investing in low-cost index funds.
-        </p>
-      </article>
-
-      <article class="space-y-3">
-        <h3 class="text-lg font-extrabold text-slate-800 dark:text-white">4. Navigating US Social Security Benefits: When to Claim at 62, 67, or 70</h3>
-        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-          Social Security benefit calculations depend heavily on your career earnings history and the exact age you elect to begin drawing distributions. While workers can claim early benefits starting at age 62 with a permanent reduction, waiting until full retirement age (67) or delaying until age 70 unlocks delayed retirement credits that increase monthly payouts by up to 8% per year. Strategic claiming requires balancing personal health longevity and overall portfolio liquidity.
-        </p>
-      </article>
-
-      <article class="space-y-3">
-        <h3 class="text-lg font-extrabold text-slate-800 dark:text-white">5. The 4% Safe Withdrawal Rule: Myth vs. Reality in Volatile Markets</h3>
-        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-          Originating from the historic Trinity Study, the 4% rule suggests retirees can withdraw 4% of their initial portfolio balance adjusted annually for inflation over a 30-year retirement horizon without depleting funds. However, modern financial advisors caution against rigid adherence during prolonged market downturns or high inflation eras, advocating for flexible withdrawal strategies and dynamic spending guardrails.
-        </p>
-      </article>
-
-      <article class="space-y-3">
-        <h3 class="text-lg font-extrabold text-slate-800 dark:text-white">6. Required Minimum Distributions (RMDs) and Tax Planning for Seniors</h3>
-        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-          US tax law mandates that owners of traditional pre-tax retirement accounts begin taking Required Minimum Distributions (RMDs) upon reaching specific age milestones. Failing to withdraw the calculated RMD amount triggers severe IRS excise taxes. Proactive retirement planning often incorporates Roth conversions during early retirement years to shrink pre-tax account balances and minimize future RMD tax burdens.
-        </p>
-      </article>
-
-      <article class="space-y-3">
-        <h3 class="text-lg font-extrabold text-slate-800 dark:text-white">7. Health Savings Accounts (HSAs) as Ultimate Stealth Retirement Vehicles</h3>
-        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-          While designed primarily to cover high-deductible health plan expenses, Health Savings Accounts function as exceptional long-term retirement accounts. Offering triple tax-free status, funds left unspent in an HSA can be invested in mutual funds and ETFs. After age 65, withdrawals for any purpose incur ordinary income tax (avoiding penalties), while medical withdrawals remain entirely tax-free.
-        </p>
-      </article>
-
-      <article class="space-y-3">
-        <h3 class="text-lg font-extrabold text-slate-800 dark:text-white">8. Asset Allocation and Rebalancing Strategies for Pre-Retirees</h3>
-        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-          As workers transition from wealth accumulation phases to retirement income distribution, portfolio risk management becomes paramount. Shifting asset allocations away from aggressive equities toward dividend-paying stocks, fixed-income bonds, and cash equivalents protects portfolios against sequence-of-returns risk. Regular annual rebalancing ensures risk exposure aligns with personal risk tolerance.
-        </p>
-      </article>
-
-      <article class="space-y-3">
-        <h3 class="text-lg font-extrabold text-slate-800 dark:text-white">9. Defined Benefit Pensions vs. Defined Contribution Plans: What Changed?</h3>
-        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-          The shift from traditional defined benefit pensions (guaranteed lifetime monthly payouts funded by employers) to defined contribution plans (like 401ks where employees bear investment risk) has revolutionized US retirement security. Understanding how to manage personal pensions, government annuities, and private savings ensures stable cash flow throughout your golden years.
-        </p>
-      </article>
-
-      <article class="space-y-3">
-        <h3 class="text-lg font-extrabold text-slate-800 dark:text-white">10. Estate Planning and Beneficiary Designations for Retirement Accounts</h3>
-        <p class="text-xs md:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
-          Retirement accounts pass directly to designated beneficiaries via contract law, superseding instructions written in a last will and testament. Maintaining up-to-date primary and contingent beneficiary designations on 401(k)s, IRAs, and pension plans ensures assets transfer smoothly, avoiding costly probate delays and unintended tax consequences for heirs.
-        </p>
-      </article>
-
-      <p class="pt-4 text-xs text-slate-500 dark:text-slate-400 italic border-t border-slate-200 dark:border-slate-700">
-        Disclaimer: OmniRetire provides independent browser-based retirement estimation tools and educational guides for informational purposes only. These materials do not constitute formal financial, tax, or investment advice. Always consult a certified financial planner (CFP) before making major retirement decisions.
-      </p>
-    </section>
-
-    <!-- CROSS-LINKING MATRIX / INDUSTRY HUB ECOSYSTEM (ALL 11 SITES) -->
-    <section class="pastel-card p-8 rounded-3xl space-y-4">
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
-        <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Recommended US Financial Tools Network</h3>
-      </div>
-      <h2 class="text-xl font-black text-slate-800 dark:text-white">Explore Our Complete Network of 11 US Calculator Suites</h2>
-      <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-        Maximize your personal finance, tax, legal, and risk management strategy with our comprehensive network of independent calculators targeting the US market:
-      </p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-2">
-        <a href="https://omni-retire.vercel.app/" target="_blank" rel="noopener" class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block">
-          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">🌴 OmniRetire</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">US 401(k), IRA, FIRE, and Social Security estimators.</div>
-        </a>
-        <a href="https://omni-loan.vercel.app/" target="_blank" rel="noopener" class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block">
-          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">🎓 OmniLoan</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">US student loan refinancing and repayment calculators.</div>
-        </a>
-        <a href="https://omnitax-three.vercel.app/" target="_blank" rel="noopener" class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block">
-          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">📋 OmniTax</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">US Federal income tax, refund, 1099, & capital gains estimators.</div>
-        </a>
-        <a href="https://omni-insure-flax.vercel.app/" target="_blank" rel="noopener" class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block">
-          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">🛡️ OmniInsure</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">US health, auto, life, and home insurance coverage estimators.</div>
-        </a>
-        <a href="https://omnicrypto-eta.vercel.app/" target="_blank" rel="noopener" class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block">
-          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">🪙 OmniCrypto</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Digital asset portfolio and cryptocurrency valuation trackers.</div>
-        </a>
-        <a href="https://omnifinance-xi.vercel.app/" target="_blank" rel="noopener" class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block">
-          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">💰 OmniFinance</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">US mortgage, loan amortization, and compound interest tools.</div>
-        </a>
-        <a href="https://omnib2b.vercel.app/" target="_blank" rel="noopener" class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block">
-          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">🏢 OmniB2B</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">SaaS pricing calculators and corporate payroll estimators.</div>
-        </a>
-        <a href="https://omni-legal.vercel.app/" target="_blank" rel="noopener" class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block">
-          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">⚖️ OmniLegal</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">US legal fee estimators and injury settlement calculators.</div>
-        </a>
-        <a href="https://omnipdf-six.vercel.app/" target="_blank" rel="noopener" class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block">
-          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">📄 OmniPDF</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Online document and financial statement conversion tools.</div>
-        </a>
-        <a href="https://omni-image.vercel.app/" target="_blank" rel="noopener" class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block">
-          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">🖼️ OmniImage</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Digital asset graphic utilities and image optimizers.</div>
-        </a>
-        <a href="https://omnitext-online.vercel.app/" target="_blank" rel="noopener" class="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block">
-          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">📝 OmniText</div>
-          <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Advanced content formatting and text manipulation suites.</div>
-        </a>
-      </div>
-    </section>
-
   </main>
 
-  <!-- FOOTER -->
-  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 py-8 text-center text-xs text-slate-500 dark:text-slate-400 font-medium mt-12">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p>© 2026 OmniRetire. Independent US Retirement Estimators. Not official financial counsel.</p>
-      <div class="flex gap-6">
-        <a href="privacy.html" class="hover:text-slate-800 dark:hover:text-white transition">Privacy Policy</a>
-        <a href="terms.html" class="hover:text-slate-800 dark:hover:text-white transition">Terms of Service</a>
-        <a href="contact.html" class="hover:text-slate-800 dark:hover:text-white transition">Contact Us</a>
+  <!-- INTERACTIVE FAQ SECTION (NEW ADDITION FOR SEO & UX) -->
+  <section id="faq-section" class="max-w-4xl mx-auto px-6 py-12 no-print">
+    <div class="text-center mb-8">
+      <h2 class="text-2xl md:text-3xl font-black text-slate-800 dark:text-white">Frequently Asked Questions</h2>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Common queries regarding US retirement planning.</p>
+    </div>
+    <div class="space-y-4">
+      <!-- FAQ 1 -->
+      <div class="pastel-card rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+        <button class="w-full text-left px-6 py-4 font-bold text-slate-800 dark:text-white flex justify-between items-center focus:outline-none" onclick="this.nextElementSibling.classList.toggle('hidden')">
+          What is a good 401(k) balance by age 40?
+          <span class="text-emerald-500">▼</span>
+        </button>
+        <div class="px-6 pb-4 hidden text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-700 pt-3">
+          Fidelity recommends having 3x your starting salary saved by age 40. For example, if you earn $75,000, your target 401(k) balance should be around $225,000 to remain on track for traditional retirement at age 67.
+        </div>
       </div>
+      <!-- FAQ 2 -->
+      <div class="pastel-card rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+        <button class="w-full text-left px-6 py-4 font-bold text-slate-800 dark:text-white flex justify-between items-center focus:outline-none" onclick="this.nextElementSibling.classList.toggle('hidden')">
+          How does the FIRE 4% rule actually work?
+          <span class="text-emerald-500">▼</span>
+        </button>
+        <div class="px-6 pb-4 hidden text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-700 pt-3">
+          The 4% rule suggests you can safely withdraw 4% of your total retirement portfolio in your first year of retirement, adjusting for inflation thereafter. Statistically, this prevents you from running out of money for a 30-year period across most historical market scenarios.
+        </div>
+      </div>
+      <!-- FAQ 3 -->
+      <div class="pastel-card rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+        <button class="w-full text-left px-6 py-4 font-bold text-slate-800 dark:text-white flex justify-between items-center focus:outline-none" onclick="this.nextElementSibling.classList.toggle('hidden')">
+          When is the absolute best time to claim Social Security?
+          <span class="text-emerald-500">▼</span>
+        </button>
+        <div class="px-6 pb-4 hidden text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-700 pt-3">
+          Mathematically, waiting until age 70 provides the highest monthly payout due to delayed retirement credits (an 8% increase per year after full retirement age). However, the best time depends on your personal health, life expectancy, and immediate cash flow needs.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPANDED SEO ARTICLES KNOWLEDGE BASE (MASSIVE CONTENT BLOCK) -->
+  <section id="seo-section" class="max-w-7xl mx-auto px-6 py-10 no-print">
+    <div class="pastel-card p-8 md:p-12 rounded-3xl space-y-10">
+      <div class="border-b border-slate-200 dark:border-slate-700 pb-6 text-center md:text-left">
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950 px-3 py-1.5 rounded-full border border-emerald-100 dark:border-emerald-900 mb-3 inline-block">Enterprise Knowledge Base</span>
+        <h2 class="text-3xl md:text-4xl font-black text-slate-800 dark:text-white leading-tight">10 Comprehensive Guides to Mastering US Retirement Strategy</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-3 max-w-3xl">Deep dive into tax-advantaged accounts, legal withdrawal frameworks, and wealth accumulation techniques used by top financial planners across the United States.</p>
+      </div>
+
+      <!-- Article 1 -->
+      <article class="space-y-4">
+        <h3 class="text-xl font-extrabold text-slate-800 dark:text-white border-l-4 border-emerald-500 pl-4">1. Mastering 401(k) Contribution Limits and Employer Matching</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+          Employer-sponsored 401(k) plans remain the cornerstone of retirement planning in the United States. Maximizing annual pre-tax or Roth contributions while capturing the full employer match is equivalent to securing an immediate guaranteed return on investment (often a 50% to 100% immediate return).
+        </p>
+        <ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-300 space-y-2 ml-4">
+          <li><strong>2026 Limits:</strong> Stay updated on IRS contribution ceilings to maximize tax sheltering.</li>
+          <li><strong>Catch-up Contributions:</strong> Workers aged 50 and older can contribute extra funds to accelerate late-stage wealth building.</li>
+          <li><strong>Vesting Schedules:</strong> Understand whether your company match is "cliff" or "graded" vesting before switching jobs.</li>
+        </ul>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="space-y-4">
+        <h3 class="text-xl font-extrabold text-slate-800 dark:text-white border-l-4 border-sky-500 pl-4">2. Roth IRA vs. Traditional IRA: Strategic Tax Diversification</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+          Individual Retirement Accounts (IRAs) offer vital tax advantages depending on whether you choose Traditional or Roth structures. Tax diversification is just as important as asset diversification. Having buckets of pre-tax, after-tax, and taxable money allows you to control your tax bracket in retirement.
+        </p>
+        <ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-300 space-y-2 ml-4">
+          <li><strong>Traditional IRA:</strong> Provides upfront tax deductions. Withdrawals are taxed as ordinary income. Best if you expect to be in a lower tax bracket in retirement.</li>
+          <li><strong>Roth IRA:</strong> Funded with after-tax dollars. All compounding and future withdrawals are 100% tax-free. Ideal for younger workers or those expecting higher future taxes.</li>
+        </ul>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="space-y-4">
+        <h3 class="text-xl font-extrabold text-slate-800 dark:text-white border-l-4 border-orange-500 pl-4">3. The FIRE Movement: Financial Independence & Early Retirement</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+          The FIRE movement has transformed modern personal finance by championing aggressive savings rates (often 50%+ of income) and extreme frugality to retire decades earlier than the standard age of 65.
+        </p>
+        <ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-300 space-y-2 ml-4">
+          <li><strong>The Math of FIRE:</strong> Your FIRE number is typically calculated by multiplying your annual living expenses by 25.</li>
+          <li><strong>Fat FIRE vs. Lean FIRE:</strong> Variations exist depending on whether you want a luxurious early retirement (Fat) or a minimalist one (Lean).</li>
+          <li><strong>Execution:</strong> Requires strict budget optimization, geographic arbitrage, and heavy reliance on low-cost index funds.</li>
+        </ul>
+      </article>
+
+      <!-- Article 4 -->
+      <article class="space-y-4">
+        <h3 class="text-xl font-extrabold text-slate-800 dark:text-white border-l-4 border-indigo-500 pl-4">4. Navigating US Social Security: Claiming Strategies</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+          Social Security benefit calculations depend heavily on your highest 35 years of earnings and the exact age you elect to begin drawing distributions. Making the wrong claiming decision can cost hundreds of thousands of dollars over a lifetime.
+        </p>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+          While workers can claim early benefits starting at age 62 with a permanent reduction (up to 30%), waiting until full retirement age (67) or delaying until age 70 unlocks delayed retirement credits that increase monthly payouts significantly. Couples must also coordinate spousal and survivor benefits.
+        </p>
+      </article>
+
+      <!-- Article 5 -->
+      <article class="space-y-4">
+        <h3 class="text-xl font-extrabold text-slate-800 dark:text-white border-l-4 border-teal-500 pl-4">5. The 4% Safe Withdrawal Rule: Myth vs. Reality</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+          Originating from the historic Trinity Study, the 4% rule is the gold standard baseline for retirement planning. However, blind adherence can be dangerous in modern volatile markets.
+        </p>
+        <ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-300 space-y-2 ml-4">
+          <li><strong>Sequence of Return Risk:</strong> Experiencing a market crash in the first few years of retirement can permanently cripple a portfolio if withdrawals remain static.</li>
+          <li><strong>Dynamic Guardrails:</strong> Modern advisors recommend adjusting withdrawal rates up or down based on current market performance rather than a strict 4% inflation-adjusted line.</li>
+        </ul>
+      </article>
+      
+      <!-- Article 6 -->
+      <article class="space-y-4">
+        <h3 class="text-xl font-extrabold text-slate-800 dark:text-white border-l-4 border-red-500 pl-4">6. Required Minimum Distributions (RMDs) and Penalty Avoidance</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+          The IRS will not let your money grow tax-deferred forever. US tax law mandates that owners of traditional pre-tax retirement accounts begin taking RMDs upon reaching age 73 (or 75 depending on birth year). Failing to withdraw the calculated RMD amount triggers a severe IRS excise tax. Proactive planning often incorporates Roth conversions during early retirement years to shrink pre-tax account balances.
+        </p>
+      </article>
+
+      <!-- Article 7 -->
+      <article class="space-y-4">
+        <h3 class="text-xl font-extrabold text-slate-800 dark:text-white border-l-4 border-green-500 pl-4">7. Health Savings Accounts (HSAs): The Ultimate Stealth Wealth Vehicle</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+          While designed to cover high-deductible health plan expenses, HSAs are actually the most tax-advantaged retirement accounts in existence. They offer triple tax-free status: contributions are tax-deductible, growth is tax-free, and withdrawals for medical expenses are tax-free. If you pay medical out-of-pocket and leave the HSA to compound, it acts as a hyper-charged IRA.
+        </p>
+      </article>
+
+      <!-- Article 8 -->
+      <article class="space-y-4">
+        <h3 class="text-xl font-extrabold text-slate-800 dark:text-white border-l-4 border-purple-500 pl-4">8. Asset Allocation and Glide Paths for Pre-Retirees</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+          As workers transition from wealth accumulation phases to retirement income distribution, portfolio risk management becomes paramount. Shifting asset allocations (creating a "glide path") away from aggressive equities toward dividend-paying stocks, fixed-income bonds, and cash equivalents protects portfolios. Regular annual rebalancing ensures risk exposure aligns with personal risk tolerance.
+        </p>
+      </article>
+
+      <!-- Article 9 -->
+      <article class="space-y-4">
+        <h3 class="text-xl font-extrabold text-slate-800 dark:text-white border-l-4 border-pink-500 pl-4">9. Defined Benefit Pensions vs. Defined Contribution Plans</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+          The shift from traditional defined benefit pensions (guaranteed lifetime monthly payouts funded by employers) to defined contribution plans (like 401ks where employees bear investment risk) has shifted the burden of retirement security onto the individual. Understanding how to manage lump-sum pension buyouts versus taking the monthly annuity is critical for public sector workers, teachers, and union members.
+        </p>
+      </article>
+
+      <!-- Article 10 -->
+      <article class="space-y-4">
+        <h3 class="text-xl font-extrabold text-slate-800 dark:text-white border-l-4 border-slate-500 pl-4">10. Estate Planning, Trusts, and Beneficiary Designations</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+          Retirement planning does not end at death. Retirement accounts pass directly to designated beneficiaries via contract law, superseding instructions written in a last will and testament. Maintaining up-to-date primary and contingent beneficiary designations on 401(k)s, IRAs, and life insurance policies ensures assets transfer smoothly, avoiding costly probate delays and unintended tax consequences for heirs under the SECURE Act regulations.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- MATRIX SECTION (11 SITES) -->
+  <section id="matrix-section" class="max-w-7xl mx-auto px-6 pb-12 no-print">
+    <div class="pastel-card p-8 md:p-12 rounded-3xl space-y-6">
+      <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-700 pb-4">
+        <span class="w-3 h-3 rounded-full bg-emerald-600 animate-ping"></span>
+        <h2 class="text-2xl font-black text-slate-800 dark:text-white">The Omni Suite: 11 Enterprise Financial Networks</h2>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
+        Maximize your personal finance, tax, legal, and risk management strategy with our interconnected ecosystem of high-performance Vercel applications built for the US market:
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-4">
+        <a href="https://omni-retire.vercel.app/" target="_blank" rel="noopener" class="p-5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block shadow-sm hover:shadow-md">
+          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">🌴 OmniRetire</div>
+          <div class="text-[11px] text-slate-500 mt-1.5 leading-tight">US 401(k), IRA, FIRE, and Social Security estimators.</div>
+        </a>
+        <a href="https://omni-loan.vercel.app/" target="_blank" rel="noopener" class="p-5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block shadow-sm hover:shadow-md">
+          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">🎓 OmniLoan</div>
+          <div class="text-[11px] text-slate-500 mt-1.5 leading-tight">US student loan refinancing and repayment calculators.</div>
+        </a>
+        <a href="https://omnitax-three.vercel.app/" target="_blank" rel="noopener" class="p-5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block shadow-sm hover:shadow-md">
+          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">📋 OmniTax</div>
+          <div class="text-[11px] text-slate-500 mt-1.5 leading-tight">US Federal income tax, refund, 1099, & capital gains.</div>
+        </a>
+        <a href="https://omni-insure-flax.vercel.app/" target="_blank" rel="noopener" class="p-5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block shadow-sm hover:shadow-md">
+          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">🛡️ OmniInsure</div>
+          <div class="text-[11px] text-slate-500 mt-1.5 leading-tight">US health, auto, life, and home insurance coverage.</div>
+        </a>
+        <a href="https://omnicrypto-eta.vercel.app/" target="_blank" rel="noopener" class="p-5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block shadow-sm hover:shadow-md">
+          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">🪙 OmniCrypto</div>
+          <div class="text-[11px] text-slate-500 mt-1.5 leading-tight">Digital asset portfolio and cryptocurrency trackers.</div>
+        </a>
+        <a href="https://omnifinance-xi.vercel.app/" target="_blank" rel="noopener" class="p-5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block shadow-sm hover:shadow-md">
+          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">💰 OmniFinance</div>
+          <div class="text-[11px] text-slate-500 mt-1.5 leading-tight">Mortgage, loan amortization, and compound interest.</div>
+        </a>
+        <a href="https://omnib2b.vercel.app/" target="_blank" rel="noopener" class="p-5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block shadow-sm hover:shadow-md">
+          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">🏢 OmniB2B</div>
+          <div class="text-[11px] text-slate-500 mt-1.5 leading-tight">SaaS pricing calculators and corporate payroll estimators.</div>
+        </a>
+        <a href="https://omni-legal.vercel.app/" target="_blank" rel="noopener" class="p-5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block shadow-sm hover:shadow-md">
+          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">⚖️ OmniLegal</div>
+          <div class="text-[11px] text-slate-500 mt-1.5 leading-tight">US legal fee estimators and injury settlement calculators.</div>
+        </a>
+        <a href="https://omnipdf-six.vercel.app/" target="_blank" rel="noopener" class="p-5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block shadow-sm hover:shadow-md">
+          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">📄 OmniPDF</div>
+          <div class="text-[11px] text-slate-500 mt-1.5 leading-tight">Online document and financial statement tools.</div>
+        </a>
+        <a href="https://omni-image.vercel.app/" target="_blank" rel="noopener" class="p-5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block shadow-sm hover:shadow-md">
+          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">🖼️ OmniImage</div>
+          <div class="text-[11px] text-slate-500 mt-1.5 leading-tight">Digital asset graphic utilities and image optimizers.</div>
+        </a>
+        <a href="https://omnitext-online.vercel.app/" target="_blank" rel="noopener" class="p-5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 transition group block shadow-sm hover:shadow-md">
+          <div class="text-sm font-extrabold text-slate-800 dark:text-white group-hover:text-emerald-600 transition">📝 OmniText</div>
+          <div class="text-[11px] text-slate-500 mt-1.5 leading-tight">Advanced content formatting and text manipulation suites.</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTERPRISE MEGA FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 py-12 text-sm text-slate-500 font-medium">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="space-y-4">
+        <h4 class="font-black text-lg text-slate-800 dark:text-white">Omni<span class="text-emerald-600">Retire</span></h4>
+        <p class="text-xs leading-relaxed">Providing high-fidelity, private, and instantaneous retirement estimates for the modern US workforce. Chart your path to financial independence today.</p>
+      </div>
+      <div class="space-y-3">
+        <h4 class="font-bold text-slate-800 dark:text-white">Top Tools</h4>
+        <ul class="space-y-2 text-xs">
+          <li><button onclick="switchTab('k401'); window.scrollTo(0,0);" class="hover:text-emerald-600 transition">401(k) Estimator</button></li>
+          <li><button onclick="switchTab('ira'); window.scrollTo(0,0);" class="hover:text-emerald-600 transition">Roth IRA Compounder</button></li>
+          <li><button onclick="switchTab('fire'); window.scrollTo(0,0);" class="hover:text-emerald-600 transition">FIRE Target Calculator</button></li>
+          <li><button onclick="switchTab('social'); window.scrollTo(0,0);" class="hover:text-emerald-600 transition">Social Security Payout</button></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <h4 class="font-bold text-slate-800 dark:text-white">Resources</h4>
+        <ul class="space-y-2 text-xs">
+          <li><a href="#seo-section" class="hover:text-emerald-600 transition">Retirement Guides</a></li>
+          <li><a href="#faq-section" class="hover:text-emerald-600 transition">Frequently Asked Questions</a></li>
+          <li><a href="#matrix-section" class="hover:text-emerald-600 transition">Network Ecosystem</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <h4 class="font-bold text-slate-800 dark:text-white">Legal</h4>
+        <ul class="space-y-2 text-xs">
+          <li><a href="privacy.html" class="hover:text-emerald-600 transition">Privacy Policy</a></li>
+          <li><a href="terms.html" class="hover:text-emerald-600 transition">Terms of Service</a></li>
+          <li><a href="disclaimer.html" class="hover:text-emerald-600 transition">Financial Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 border-t border-slate-200 dark:border-slate-800 mt-10 pt-6 text-center text-xs">
+      <p>© 2026 OmniRetire Enterprise Suite. All calculations are run locally on your device for absolute privacy. Not official financial or legal counsel. Consult a CFP before acting on any estimates.</p>
     </div>
   </footer>
 
-  <!-- JAVASCRIPT SYSTEM (10 CALCULATORS) -->
+  <!-- ADVANCED JAVASCRIPT SYSTEM (10 CALCULATORS + CHART.JS + UX LOGIC) -->
   <script>
+    let myChart = null;
+    const tabList = ['k401', 'ira', 'fire', 'social', 'withdrawal', 'pension', 'hsa', 'rmd', 'annuity', 'milestone'];
+
     function toggleDarkMode() {
-      if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        document.documentElement.classList.add('light');
-        document.getElementById('themeIcon').innerText = '🌙';
-      } else {
-        document.documentElement.classList.remove('light');
-        document.documentElement.classList.add('dark');
-        document.getElementById('themeIcon').innerText = '☀️';
-      }
+      document.documentElement.classList.toggle('dark');
+      document.getElementById('themeIcon').innerText = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
     }
 
     function switchTab(tab) {
-      const tabs = ['k401', 'ira', 'fire', 'social', 'withdrawal', 'pension', 'hsa', 'rmd', 'annuity', 'milestone'];
-      tabs.forEach(t => {
+      tabList.forEach(t => {
         const btn = document.getElementById('tabBtn' + t.charAt(0).toUpperCase() + t.slice(1));
-        const con = document.getElementById('tabContent' + t.charAt(0).toUpperCase() + t.slice(1));
-        if (btn && con) {
-          if (t === tab) {
-            btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-sm whitespace-nowrap";
-            con.classList.remove('hidden');
-          } else {
-            btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 whitespace-nowrap";
-            con.classList.add('hidden');
+        const content = document.getElementById('tabContent' + t.charAt(0).toUpperCase() + t.slice(1));
+        if(t === tab) {
+          btn.className = "px-5 py-2.5 rounded-xl text-xs font-extrabold transition bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-md whitespace-nowrap";
+          content.classList.remove('hidden');
+        } else {
+          btn.className = "px-5 py-2.5 rounded-xl text-xs font-extrabold transition text-slate-600 dark:text-slate-400 hover:text-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 whitespace-nowrap";
+          content.classList.add('hidden');
+        }
+      });
+      // Reset visualizer text gracefully
+      document.getElementById('resultLabel').innerText = "System Standby";
+      document.getElementById('resultTotal').innerText = "Awaiting Input";
+      document.getElementById('resultSubtext').innerText = "Enter your variables to render the projection.";
+      if(myChart) myChart.destroy();
+    }
+
+    function drawChart(type, labels, dataArray, lineColor, labelName) {
+      if (myChart) myChart.destroy();
+      const ctx = document.getElementById('wealthChart').getContext('2d');
+      document.getElementById('resultSubtext').innerText = "Visual rendering complete. Hover over data points for exact values.";
+      
+      const isDark = document.documentElement.classList.contains('dark');
+      const gridColor = isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)';
+      const textColor = isDark ? '#94a3b8' : '#64748b';
+
+      myChart = new Chart(ctx, {
+        type: type,
+        data: {
+          labels: labels,
+          datasets: [{
+            label: labelName,
+            data: dataArray,
+            borderColor: lineColor,
+            backgroundColor: lineColor + '33', // 33 for transparency
+            fill: type === 'line',
+            tension: 0.4,
+            borderWidth: 3,
+            borderRadius: type === 'bar' ? 6 : 0,
+            pointRadius: type === 'line' ? 0 : 4,
+            pointHoverRadius: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { 
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  let value = context.raw || 0;
+                  return '$' + value.toLocaleString();
+                }
+              }
+            }
+          },
+          scales: {
+            x: { 
+              grid: { display: false },
+              ticks: { color: textColor }
+            },
+            y: { 
+              grid: { color: gridColor }, 
+              beginAtZero: true,
+              ticks: { 
+                color: textColor,
+                callback: function(value) {
+                  if (value >= 1000000) return '$' + (value/1000000).toFixed(1) + 'M';
+                  if (value >= 1000) return '$' + (value/1000).toFixed(0) + 'k';
+                  return '$' + value;
+                }
+              }
+            }
           }
         }
       });
     }
 
+    // 1. 401(k) Logic
     function calculate401k() {
-      let balance = parseFloat(document.getElementById('k401Balance').value) || 0;
-      let contrib = parseFloat(document.getElementById('k401Contrib').value) || 0;
-      let years = parseFloat(document.getElementById('k401Years').value) || 0;
-      let rate = (parseFloat(document.getElementById('k401Return').value) || 0) / 100;
-      for (let i = 0; i < years; i++) { balance = (balance + contrib) * (1 + rate); }
-      document.getElementById('resK401Total').innerText = '$' + Math.round(balance).toLocaleString();
-      document.getElementById('k401Result').classList.remove('hidden');
+      let b = parseFloat(document.getElementById('k401Balance').value) || 0;
+      let c = parseFloat(document.getElementById('k401Contrib').value) || 0;
+      let y = parseInt(document.getElementById('k401Years').value) || 0;
+      let r = (parseFloat(document.getElementById('k401Return').value) || 0) / 100;
+      let labels = [], data = [], current = b;
+      for (let i = 0; i <= y; i++) {
+        labels.push('Y' + i);
+        data.push(Math.round(current));
+        current = (current + c) * (1 + r);
+      }
+      document.getElementById('resultLabel').innerText = 'Future 401(k) Balance';
+      document.getElementById('resultTotal').innerText = '$' + data[data.length - 1].toLocaleString();
+      drawChart('line', labels, data, '#10b981', '401(k) Balance');
     }
 
+    // 2. IRA Logic
     function calculateIra() {
-      let contrib = parseFloat(document.getElementById('iraContrib').value) || 0;
-      let years = parseFloat(document.getElementById('iraYears').value) || 0;
-      let rate = (parseFloat(document.getElementById('iraReturn').value) || 0) / 100;
-      let balance = 0;
-      for (let i = 0; i < years; i++) { balance = (balance + contrib) * (1 + rate); }
-      document.getElementById('resIraTotal').innerText = '$' + Math.round(balance).toLocaleString();
-      document.getElementById('iraResult').classList.remove('hidden');
+      let c = parseFloat(document.getElementById('iraContrib').value) || 0;
+      let y = parseInt(document.getElementById('iraYears').value) || 0;
+      let r = (parseFloat(document.getElementById('iraReturn').value) || 0) / 100;
+      let labels = [], data = [], current = 0;
+      for (let i = 0; i <= y; i++) {
+        labels.push('Y' + i);
+        data.push(Math.round(current));
+        current = (current + c) * (1 + r);
+      }
+      document.getElementById('resultLabel').innerText = 'Future Roth IRA Balance';
+      document.getElementById('resultTotal').innerText = '$' + data[data.length - 1].toLocaleString();
+      drawChart('line', labels, data, '#0284c7', 'Roth IRA Nest Egg');
     }
 
+    // 3. FIRE Logic
     function calculateFire() {
-      let expenses = parseFloat(document.getElementById('fireExpenses').value) || 0;
-      let rate = (parseFloat(document.getElementById('fireRate').value) || 4.0) / 100;
-      let fireTarget = expenses / rate;
-      document.getElementById('resFireTotal').innerText = '$' + Math.round(fireTarget).toLocaleString();
-      document.getElementById('fireResult').classList.remove('hidden');
+      let exp = parseFloat(document.getElementById('fireExpenses').value) || 0;
+      let r = (parseFloat(document.getElementById('fireRate').value) || 4.0) / 100;
+      let target = exp / r;
+      document.getElementById('resultLabel').innerText = 'FIRE Target Corpus';
+      document.getElementById('resultTotal').innerText = '$' + Math.round(target).toLocaleString();
+      drawChart('bar', ['Annual Expenses', 'Required FIRE Target'], [exp, target], '#f97316', 'FIRE Amount');
     }
 
+    // 4. Social Security Logic
     function calculateSocial() {
-      let earnings = parseFloat(document.getElementById('ssEarnings').value) || 0;
-      let strategy = document.getElementById('ssAge').value;
-      let baseBenefit = (earnings * 0.35) / 12;
-      if (strategy === 'early') baseBenefit *= 0.70;
-      if (strategy === 'delayed') baseBenefit *= 1.24;
-      document.getElementById('resSocialMonthly').innerText = '$' + Math.round(baseBenefit).toLocaleString();
-      document.getElementById('socialResult').classList.remove('hidden');
+      let earn = parseFloat(document.getElementById('ssEarnings').value) || 0;
+      let strat = document.getElementById('ssAge').value;
+      let base = (earn * 0.35) / 12; // Extremely simplified estimation for UI purposes
+      let early = base * 0.70;
+      let full = base;
+      let delayed = base * 1.24;
+      let chosen = strat === 'early' ? early : strat === 'delayed' ? delayed : full;
+      
+      document.getElementById('resultLabel').innerText = 'Estimated Monthly Benefit';
+      document.getElementById('resultTotal').innerText = '$' + Math.round(chosen).toLocaleString();
+      drawChart('bar', ['Age 62 (Early)', 'Age 67 (Full)', 'Age 70 (Delayed)'], [early, full, delayed], '#8b5cf6', 'Monthly SS Payout');
     }
 
+    // 5. Withdrawal Logic
     function calculateWithdrawal() {
-      let balance = parseFloat(document.getElementById('wdBalance').value) || 0;
-      let rate = (parseFloat(document.getElementById('wdRate').value) || 4.0) / 100;
-      let annual = balance * rate;
-      let monthly = annual / 12;
-      document.getElementById('resWdAnnual').innerText = '$' + Math.round(annual).toLocaleString();
-      document.getElementById('resWdMonthly').innerText = '$' + Math.round(monthly).toLocaleString();
-      document.getElementById('withdrawalResult').classList.remove('hidden');
+      let b = parseFloat(document.getElementById('wdBalance').value) || 0;
+      let r = (parseFloat(document.getElementById('wdRate').value) || 4.0) / 100;
+      let ann = b * r;
+      document.getElementById('resultLabel').innerText = 'Annual Sustainable Income';
+      document.getElementById('resultTotal').innerText = '$' + Math.round(ann).toLocaleString();
+      drawChart('bar', ['Total Portfolio', 'Safe Annual Income'], [b, ann], '#14b8a6', 'Withdrawal Plan');
     }
 
+    // 6. Pension Logic
     function calculatePension() {
-      let salary = parseFloat(document.getElementById('penSalary').value) || 0;
-      let years = parseFloat(document.getElementById('penYears').value) || 0;
-      let multiplier = (parseFloat(document.getElementById('penMultiplier').value) || 2.0) / 100;
-      let annualPension = salary * years * multiplier;
-      document.getElementById('resPenTotal').innerText = '$' + Math.round(annualPension).toLocaleString();
-      document.getElementById('pensionResult').classList.remove('hidden');
+      let sal = parseFloat(document.getElementById('penSalary').value) || 0;
+      let y = parseFloat(document.getElementById('penYears').value) || 0;
+      let m = (parseFloat(document.getElementById('penMultiplier').value) || 2.0) / 100;
+      let ann = sal * y * m;
+      document.getElementById('resultLabel').innerText = 'Annual Pension Payout';
+      document.getElementById('resultTotal').innerText = '$' + Math.round(ann).toLocaleString();
+      drawChart('bar', ['Final Salary', 'Annual Pension Payout'], [sal, ann], '#ec4899', 'Pension Formula');
     }
 
+    // 7. HSA Logic
     function calculateHsa() {
-      let contrib = parseFloat(document.getElementById('hsaContrib').value) || 0;
-      let years = parseFloat(document.getElementById('hsaYears').value) || 0;
-      let rate = (parseFloat(document.getElementById('hsaReturn').value) || 0) / 100;
-      let balance = 0;
-      for (let i = 0; i < years; i++) { balance = (balance + contrib) * (1 + rate); }
-      document.getElementById('resHsaTotal').innerText = '$' + Math.round(balance).toLocaleString();
-      document.getElementById('hsaResult').classList.remove('hidden');
+      let c = parseFloat(document.getElementById('hsaContrib').value) || 0;
+      let y = parseInt(document.getElementById('hsaYears').value) || 0;
+      let r = (parseFloat(document.getElementById('hsaReturn').value) || 0) / 100;
+      let labels = [], data = [], current = 0;
+      for (let i = 0; i <= y; i++) {
+        labels.push('Y' + i);
+        data.push(Math.round(current));
+        current = (current + c) * (1 + r);
+      }
+      document.getElementById('resultLabel').innerText = 'Tax-Free HSA Balance';
+      document.getElementById('resultTotal').innerText = '$' + data[data.length - 1].toLocaleString();
+      drawChart('line', labels, data, '#059669', 'HSA Triple-Tax Free');
     }
 
+    // 8. RMD Logic
     function calculateRmd() {
-      let balance = parseFloat(document.getElementById('rmdBalance').value) || 0;
+      let b = parseFloat(document.getElementById('rmdBalance').value) || 0;
       let age = parseFloat(document.getElementById('rmdAge').value) || 75;
-      let divisor = Math.max(1, 27.4 - (age - 73) * 1.1); // Simplified IRS uniform lifetime table approximation
-      let rmd = balance / divisor;
-      document.getElementById('resRmdTotal').innerText = '$' + Math.round(rmd).toLocaleString();
-      document.getElementById('rmdResult').classList.remove('hidden');
+      let div = Math.max(1, 27.4 - (age - 73) * 1.1); // Simplified IRS uniform lifetime table approximation
+      let rmd = b / div;
+      document.getElementById('resultLabel').innerText = 'Required Minimum Distribution';
+      document.getElementById('resultTotal').innerText = '$' + Math.round(rmd).toLocaleString();
+      drawChart('bar', ['Account Balance', 'Required Withdrawal (RMD)'], [b, rmd], '#ef4444', 'RMD Rules');
     }
 
+    // 9. Annuity Logic
     function calculateAnnuity() {
-      let balance = parseFloat(document.getElementById('annBalance').value) || 0;
-      let years = parseFloat(document.getElementById('annYears').value) || 20;
-      let rate = (parseFloat(document.getElementById('annRate').value) || 5.0) / 100 / 12;
-      let months = years * 12;
-      let monthly = 0;
-      if (rate > 0) {
-        monthly = (balance * rate * Math.pow(1 + rate, months)) / (Math.pow(1 + rate, months) - 1);
-      } else {
-        monthly = balance / months;
-      }
-      document.getElementById('resAnnMonthly').innerText = '$' + Math.round(monthly).toLocaleString();
-      document.getElementById('annuityResult').classList.remove('hidden');
+      let b = parseFloat(document.getElementById('annBalance').value) || 0;
+      let y = parseFloat(document.getElementById('annYears').value) || 20;
+      let r = (parseFloat(document.getElementById('annRate').value) || 5.0) / 100 / 12;
+      let m = y * 12;
+      let monthly = r > 0 ? (b * r * Math.pow(1 + r, m)) / (Math.pow(1 + r, m) - 1) : b / m;
+      document.getElementById('resultLabel').innerText = 'Monthly Annuity Income';
+      document.getElementById('resultTotal').innerText = '$' + Math.round(monthly).toLocaleString();
+      drawChart('bar', ['Lump Sum Premium', 'Total Expected Payout'], [b, monthly * m], '#eab308', 'Annuity Value');
     }
 
+    // 10. Milestone Logic
     function calculateMilestone() {
-      let balance = parseFloat(document.getElementById('mileBalance').value) || 0;
-      let target = parseFloat(document.getElementById('mileTarget').value) || 1500000;
-      let savings = parseFloat(document.getElementById('mileSavings').value) || 25000;
-      let rate = 0.075;
-      let years = 0;
-      while (balance < target && years < 100) {
-        balance = (balance + savings) * (1 + rate);
-        years++;
+      let b = parseFloat(document.getElementById('mileBalance').value) || 0;
+      let t = parseFloat(document.getElementById('mileTarget').value) || 1500000;
+      let s = parseFloat(document.getElementById('mileSavings').value) || 25000;
+      let labels = [], data = [], current = b, y = 0;
+      while (current <= t && y <= 50) {
+        labels.push('Y' + y);
+        data.push(Math.round(current));
+        current = (current + s) * (1 + 0.075);
+        y++;
       }
-      document.getElementById('resMileYears').innerText = years + ' Years';
-      document.getElementById('milestoneResult').classList.remove('hidden');
+      labels.push('Goal Met');
+      data.push(Math.round(current));
+      document.getElementById('resultLabel').innerText = 'Years to Reach Target';
+      document.getElementById('resultTotal').innerText = y + ' Years';
+      drawChart('line', labels, data, '#0ea5e9', 'Milestone Journey');
     }
   </script>
 </body>
